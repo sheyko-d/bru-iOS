@@ -1,0 +1,6 @@
+framework module YPTabBarController {
+  umbrella header "YPTabBarController-umbrella.h"
+
+  export *
+  module * { export * }
+}
