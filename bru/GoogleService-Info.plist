@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<string>ca-app-pub-1761468736156699/5522144763</string>
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<string>ca-app-pub-1761468736156699/5522144763</string>
 	<key>CLIENT_ID</key>
 	<string>464012701134-17v04if5nc809dv611q652pjhakh2q30.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>

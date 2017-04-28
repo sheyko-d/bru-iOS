@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-1761468736156699~1132205161")
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-1761468736156699~4045411567")
         
         if notificationsEnabled() {
             let pushNotificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)

@@ -47,7 +47,7 @@
         <scene sceneID="3wy-np-U2j">
             <objects>
                 <navigationController navigationBarHidden="YES" id="4MH-Rm-Osg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YTN-iY-u8L">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="YTN-iY-u8L">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -81,7 +81,7 @@
                                                 <rect key="frame" x="36" y="124" width="303" height="418"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="brü" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IZQ-Hg-XMk">
-                                                        <rect key="frame" x="111" y="0.0" width="82.5" height="61.5"/>
+                                                        <rect key="frame" x="110.5" y="0.0" width="82.5" height="61.5"/>
                                                         <fontDescription key="fontDescription" name="Comfortaa-Bold" family="Comfortaa" pointSize="49"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
@@ -395,7 +395,7 @@
                                     <constraint firstAttribute="height" constant="50" id="vfF-e2-gPU"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-1761468736156699/8515871167"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="adUnitID" value="ca-app-pub-1761468736156699/5522144763"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="autoloadEnabled" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -1195,7 +1195,7 @@
                                         <rect key="frame" x="105.5" y="0.0" width="164" height="56"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="brü" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BhY-rb-cTS">
-                                        <rect key="frame" x="147" y="56" width="82.5" height="61.5"/>
+                                        <rect key="frame" x="146.5" y="56" width="82.5" height="61.5"/>
                                         <fontDescription key="fontDescription" name="Comfortaa-Bold" family="Comfortaa" pointSize="49"/>
                                         <color key="textColor" red="0.62352941176470589" green="0.83137254901960778" blue="0.36862745098039218" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1985,7 +1985,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="brü" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zX7-Pf-mav">
-                                        <rect key="frame" x="163.5" y="27.5" width="49" height="29.5"/>
+                                        <rect key="frame" x="163.5" y="28" width="49" height="29.5"/>
                                         <fontDescription key="fontDescription" name="Comfortaa" family="Comfortaa" pointSize="29"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>

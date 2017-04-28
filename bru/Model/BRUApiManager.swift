@@ -27,7 +27,8 @@ class BRUApiManager: NSObject {
         manager.responseSerializer = AFHTTPResponseSerializer()
         manager.post(baseApiPath + "/user/register.php", parameters: signupData, success: { (requestOperation, responseObject) in
             do {
-                let responseDictionary = try JSONSerialization.jsonObject(with: responseObject as! Data) as! Dictionary<String, Any>
+                var responseDictionary = try JSONSerialization.jsonObject(with: responseObject as! Data) as! Dictionary<String, Any>
+                responseDictionary["id"] = String(responseDictionary["id"] as! Int)
                 let user = BRUUser(fromJSONDictionary: responseDictionary)
                 setUser(user: user)
                 taskCompletonSource.trySetResult(["success": true] as AnyObject)
