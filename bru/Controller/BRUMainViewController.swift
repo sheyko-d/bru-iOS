@@ -83,7 +83,7 @@ class BRUMainViewController: UIViewController, CLLocationManagerDelegate {
         self.locationManager.distanceFilter = kCLDistanceFilterNone
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
-        if CGFloat(Float(UIDevice.current.systemVersion)!) >= 8.0 {
+        if CGFloat((UIDevice.current.systemVersion as NSString).floatValue) >= 8.0 {
             self.locationManager.requestWhenInUseAuthorization()
         }
         self.locationManager.startUpdatingLocation()
