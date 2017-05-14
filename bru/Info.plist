@@ -50,6 +50,8 @@
 	<string>brü uses your location.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>brü uses photos for your profile picture.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>brü uses camera to take photo.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Comfortaa-Bold.ttf</string>
