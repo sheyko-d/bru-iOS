@@ -254,8 +254,8 @@ class BRUApiManager: NSObject {
     func updateUser(image: UIImage?, imageURL: URL?) -> BFTask<AnyObject>! {
         var postData: Dictionary<String, String> = [:]
         let user = getUser()
-        postData["name"] = "\"" + user.name + "\""
-        postData["email"] = "\"" + user.email + "\""
+        postData["name"] = user.name
+        postData["email"] = user.email
         postData["token"] = "\"" + user.token + "\""
         
         let taskCompletonSource = BFTaskCompletionSource<AnyObject>()

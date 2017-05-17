@@ -34,6 +34,12 @@ class BRUSettingsViewController: UIViewController, UIImagePickerControllerDelega
         self.photoImageView.clipsToBounds = true
         if user.photo != nil {
             self.photoImageView.setImageWith(URL(string: user.photo!)!, placeholderImage: UIImage(named: "avatar_placeholder"))
+        } else {
+            let data = UserDefaults.standard.data(forKey: "LocalProfileImage")
+            if data != nil {
+                let image = UIImage.init(data: data!)
+                self.photoImageView.image = image
+            }
         }
         self.notificationCheckBoxSelected = notificationsEnabled()
         self.notificationCheckBoxButton.isSelected = self.notificationCheckBoxSelected
@@ -151,6 +157,13 @@ class BRUSettingsViewController: UIViewController, UIImagePickerControllerDelega
         self.imageURL = info[UIImagePickerControllerReferenceURL] as? URL
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.photoImageView.image = chosenImage
+        
+        let data = UIImagePNGRepresentation(chosenImage)
+        UserDefaults.standard.set(data, forKey: "LocalProfileImage")
+        let user = getUser()
+        user.photo = nil
+        setUser(user: user)
+        
         self.updateUser()
         
         picker.dismiss(animated: true, completion: nil)
