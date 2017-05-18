@@ -52,6 +52,7 @@ func getUser() -> BRUUser {
  */
 func logout() {
     UserDefaults.standard.removeObject(forKey: PREF_PROFILE)
+    UserDefaults.standard.removeObject(forKey: "LocalProfileImage")
 }
 
 func notificationsEnabled() -> Bool {

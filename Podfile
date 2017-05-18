@@ -12,6 +12,7 @@ target 'bru' do
   pod 'FBSDKLoginKit'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod 'Firebase/Messaging'
   pod 'TPKeyboardAvoiding'
   pod 'SideMenu'
   pod 'YPTabBarController'

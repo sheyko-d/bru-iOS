@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import UserNotifications
 import FBSDKCoreKit
 import Firebase
+import FirebaseMessaging
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate {
 
     var window: UIWindow?
 
@@ -20,14 +22,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-        FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-1761468736156699~4045411567")
-        
         if notificationsEnabled() {
-            let pushNotificationSettings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(pushNotificationSettings)
+            if #available(iOS 10.0, *) {
+                // For iOS 10 display notification (sent via APNS)
+                UNUserNotificationCenter.current().delegate = self
+                
+                let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+                UNUserNotificationCenter.current().requestAuthorization(
+                    options: authOptions,
+                    completionHandler: {_, _ in })
+                
+                // For iOS 10 data message (sent via FCM)
+                FIRMessaging.messaging().remoteMessageDelegate = self
+                
+            } else {
+                let settings: UIUserNotificationSettings =
+                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+                application.registerUserNotificationSettings(settings)
+            }
+        
             application.registerForRemoteNotifications()
         }
+        
+        FIRApp.configure()
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-1761468736156699~4045411567")
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.tokenRefreshNotification), name: .firInstanceIDTokenRefresh, object: nil)
         
@@ -54,6 +72,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 return task
             })
+            
+            connectToFcm()
+        }
+    }
+    
+    func connectToFcm() {
+        // Won't connect since there is no token
+        guard FIRInstanceID.instanceID().token() != nil else {
+            return
+        }
+        
+        // Disconnect previous FCM connection if it exists.
+        FIRMessaging.messaging().disconnect()
+        
+        FIRMessaging.messaging().connect { (error) in
+            if error != nil {
+                print("Unable to connect with FCM. \(error?.localizedDescription ?? "")")
+            } else {
+                print("Connected to FCM.")
+            }
         }
     }
 
@@ -65,6 +103,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        FIRMessaging.messaging().disconnect()
+        print("Disconnected from FCM.")
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -73,6 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        connectToFcm()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -88,6 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("deviceToken: " + token)
         FIRInstanceID.instanceID().setAPNSToken(deviceToken, type: FIRInstanceIDAPNSTokenType.unknown)
     }
     
@@ -96,8 +139,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        
+        application.applicationIconBadgeNumber = 0
+    }
+    
+    /// The callback to handle data message received via FCM for devices running iOS 10 or above.
+    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+        print(remoteMessage.appData)
     }
 
 }
-

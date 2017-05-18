@@ -11,6 +11,7 @@ import SideMenu
 import YPTabBarController
 import GoogleMobileAds
 import Firebase
+import FirebaseMessaging
 import MBProgressHUD
 import Bolts
 import CoreLocation

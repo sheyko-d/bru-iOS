@@ -12,6 +12,7 @@
 		0C419BB91E9F6A7B00984B3B /* BRUUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C419BB81E9F6A7B00984B3B /* BRUUser.swift */; };
 		0C419BBB1E9F6B6A00984B3B /* BRULandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C419BBA1E9F6B6A00984B3B /* BRULandingViewController.swift */; };
 		0C6C5F9E1EAA33C800D87DF6 /* BRUMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6C5F9D1EAA33C800D87DF6 /* BRUMainViewController.swift */; };
+		0C7304831ECD49C500F06C82 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C7304821ECD49C500F06C82 /* UserNotifications.framework */; };
 		0C7B93271EA5A777008737C1 /* BRUApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B93261EA5A777008737C1 /* BRUApiManager.swift */; };
 		0C7B93291EA607A6008737C1 /* BRUSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C7B93281EA607A6008737C1 /* BRUSignupViewController.swift */; };
 		0CC920041EAC572700BC9D75 /* BRUNewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CC920031EAC572700BC9D75 /* BRUNewsFeedViewController.swift */; };
@@ -42,6 +43,7 @@
 		0C419BB81E9F6A7B00984B3B /* BRUUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRUUser.swift; path = Model/BRUUser.swift; sourceTree = "<group>"; };
 		0C419BBA1E9F6B6A00984B3B /* BRULandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRULandingViewController.swift; path = Controller/BRULandingViewController.swift; sourceTree = "<group>"; };
 		0C6C5F9D1EAA33C800D87DF6 /* BRUMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRUMainViewController.swift; path = Controller/BRUMainViewController.swift; sourceTree = "<group>"; };
+		0C7304821ECD49C500F06C82 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		0C7B93261EA5A777008737C1 /* BRUApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRUApiManager.swift; path = Model/BRUApiManager.swift; sourceTree = "<group>"; };
 		0C7B93281EA607A6008737C1 /* BRUSignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRUSignupViewController.swift; path = Controller/BRUSignupViewController.swift; sourceTree = "<group>"; };
 		0CC920031EAC572700BC9D75 /* BRUNewsFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BRUNewsFeedViewController.swift; path = Controller/BRUNewsFeedViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C7304831ECD49C500F06C82 /* UserNotifications.framework in Frameworks */,
 				E8F9423022747BE732132179 /* Pods_bru.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +190,7 @@
 		2ABF84ADD78EA8C13C84DAEE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C7304821ECD49C500F06C82 /* UserNotifications.framework */,
 				6B765CFA1E8C64AC2581DD0C /* Pods_bru.framework */,
 			);
 			name = Frameworks;
@@ -237,8 +241,14 @@
 					0CFC7E871E9F5C6700C9A297 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = SYGM33CQJM;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+							com.apple.Keychain = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -479,11 +489,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = bru/bru.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ma Huateng (XM25HPGYRZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ma Huateng (XM25HPGYRZ)";
 				DEVELOPMENT_TEAM = SYGM33CQJM;
 				INFOPLIST_FILE = bru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moyer.bru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e7b7114-3d44-416e-b439-fcaa2aedbb44";
+				PROVISIONING_PROFILE_SPECIFIER = "bru development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -494,11 +508,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = bru/bru.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ma Huateng (XM25HPGYRZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ma Huateng (XM25HPGYRZ)";
 				DEVELOPMENT_TEAM = SYGM33CQJM;
 				INFOPLIST_FILE = bru/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.moyer.bru;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4e7b7114-3d44-416e-b439-fcaa2aedbb44";
+				PROVISIONING_PROFILE_SPECIFIER = "bru development";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

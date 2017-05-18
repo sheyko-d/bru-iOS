@@ -254,8 +254,8 @@ class BRUApiManager: NSObject {
     func updateUser(image: UIImage?, imageURL: URL?) -> BFTask<AnyObject>! {
         var postData: Dictionary<String, String> = [:]
         let user = getUser()
-        postData["name"] = user.name
-        postData["email"] = user.email
+        postData["name"] = "\"" + user.name + "\""
+        postData["email"] = "\"" + user.email + "\""
         postData["token"] = "\"" + user.token + "\""
         
         let taskCompletonSource = BFTaskCompletionSource<AnyObject>()
@@ -267,7 +267,7 @@ class BRUApiManager: NSObject {
 //            formData.appendPart(withForm: user.token.data(using: .utf8)!, name: "token")
             if image != nil {
                 let data = UIImagePNGRepresentation(image!)
-                formData.appendPart(withFileData: data!, name: "file", fileName: (imageURL?.absoluteString)!, mimeType: "image/*")
+                formData.appendPart(withFileData: data!, name: "file", fileName: "profile", mimeType: "image/*")
             }
         }, success: { (requestOperation, responseObject) in
             taskCompletonSource.trySetResult(["success": true] as AnyObject)
