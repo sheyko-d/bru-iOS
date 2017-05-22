@@ -20,6 +20,7 @@ class BRUSettingsViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var versionLabel: UILabel!
     
     private var imageURL: URL?
+    private var isImageSelected: Bool = false
     private var notificationCheckBoxSelected: Bool = false
     
     override func viewDidLoad() {
@@ -155,6 +156,7 @@ class BRUSettingsViewController: UIViewController, UIImagePickerControllerDelega
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         self.imageURL = info[UIImagePickerControllerReferenceURL] as? URL
+        self.isImageSelected = true
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         self.photoImageView.image = chosenImage
         
@@ -172,9 +174,10 @@ class BRUSettingsViewController: UIViewController, UIImagePickerControllerDelega
     func updateUser() {
         let loadingIndicator = MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        BRUApiManager.sharedInstance.updateUser(image: self.imageURL != nil ? self.photoImageView.image : nil, imageURL: self.imageURL).continue(with: BFExecutor.mainThread(), with: { (task: BFTask) -> Any? in
+        BRUApiManager.sharedInstance.updateUser(image: self.isImageSelected == true ? self.photoImageView.image : nil, imageURL: self.imageURL).continue(with: BFExecutor.mainThread(), with: { (task: BFTask) -> Any? in
             
             loadingIndicator.hide(animated: true)
+            self.isImageSelected = false
             
             let result = task.result
             
